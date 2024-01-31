@@ -134,7 +134,6 @@ begin
           continue;
       end;
     end;
-    writeln(propName);
     attr := TPropAtrributes(Prop.GetAttribute(TPropAtrributes));
     columnName := Prop.name;
     pr.PType := ftUnknown;
@@ -242,17 +241,13 @@ begin
   if Length(props) >= 1 then
   begin
     for var i := 0 to Length(props) - 1 do
-    begin
-      writeln(columns[props[i]]);
       cols := cols + columns[props[i]] + ',';
-    end;
     cols := cols.Remove(cols.Length - 1, 1);
   end
   else
     cols := '*';
 
   qText := qText + cols + ' FROM ' + Name + ' ' + sqlString;
-  writeln(qText);
   adoq.SQL.Text := qText;
   adoq.Open;
   try
